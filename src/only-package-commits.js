@@ -3,9 +3,14 @@ const pkgUp = require('pkg-up');
 const readPkg = require('read-pkg');
 const path = require('path');
 const pLimit = require('p-limit');
-const debug = require('debug')('semantic-release:monorepo');
-const { getCommitFiles, getRoot } = require('./git-utils');
-const { mapCommits } = require('./options-transforms');
+const debug = require('debug')('semantic-release:nx');
+const {
+  getCommitFiles,
+  getRoot,
+} = require('semantic-release-monorepo/src/git-utils');
+const {
+  mapCommits,
+} = require('semantic-release-monorepo/src/options-transforms');
 
 const memoizedGetCommitFiles = memoizeWith(identity, getCommitFiles);
 
@@ -13,7 +18,11 @@ const memoizedGetCommitFiles = memoizeWith(identity, getCommitFiles);
  * Get the normalized PACKAGE root path, relative to the git PROJECT root.
  */
 const getPackagePath = async () => {
-  const packagePath = await pkgUp();
+  let packagePath = await pkgUp();
+  // Point the package path to the source (top level apps/libs)
+  // because that's where affected changes are in Nx monorepos
+  packagePath = packagePath.replace('dist/', '/');
+
   const gitRoot = await getRoot();
 
   return path.relative(gitRoot, path.resolve(packagePath, '..'));

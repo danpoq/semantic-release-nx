@@ -1,7 +1,7 @@
 {
-  "name": "semantic-release-monorepo",
-  "version": "0.0.0-development",
-  "description": "Plugins for `semantic-release` allowing it to be used with a monorepo.",
+  "name": "semantic-release-nx",
+  "version": "1.0.0",
+  "description": "Configuration for `semantic-release` allowing it to be used with Nx.",
   "main": "src/index.js",
   "files": [
     "src"
@@ -17,11 +17,11 @@
   },
   "dependencies": {
     "debug": "^3.1.0",
-    "execa": "^0.8.0",
     "p-limit": "^1.2.0",
     "pkg-up": "^2.0.0",
     "ramda": "^0.25.0",
     "read-pkg": "^5.0.0",
+    "semantic-release-monorepo": "^7.0.5",
     "semantic-release-plugin-decorators": "^3.0.0"
   },
   "devDependencies": {
