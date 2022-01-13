@@ -45,7 +45,7 @@ yarn add semantic-release semantic-release-nx --dev
             "commands": [
               {
                 "command": "semantic-release -e semantic-release-nx",
-                "cwd": "libs/<my-lib>"
+                "cwd": "dist/libs/<my-lib>"
               }
             ]
           }
